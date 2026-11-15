@@ -77,29 +77,18 @@ with col_mapa:
     st.subheader("🗺️ Onde está o pasto agora? (Visão de Satélite)")
     st.caption("Verde = Vegetação saudável / Pasto disponível | Vermelho/Amarelo = Solo seco / Área crítica")
     
-    # Carrega a última imagem TIF real para mostrar o mapa visual
-    ultimo_tif = ultimo_registo['arquivo']
-    caminho_tif = None
-    for raiz, _, arquivos in os.walk("nasaangola"):
-        if ultimo_tif in arquivos:
-            caminho_tif = os.path.join(raiz, ultimo_tif)
-            break
-            
-    if caminho_tif:
-        with rasterio.open(caminho_tif) as src:
-            matriz = src.read(1).astype(float)
-            matriz = np.where(matriz < -3000, np.nan, matriz * 0.0001)
-            
-            fig_mapa = px.imshow(
-                matriz,
-                color_continuous_scale="RdYlGn", # Escala intuitiva: Vermelho -> Amarelo -> Verde
-                zmin=0.1, zmax=0.6,
-                labels={'color': 'Vigor Vegetal'}
-            )
-            fig_mapa.update_xaxes(showticklabels=False).update_yaxes(showticklabels=False)
-            fig_mapa.update_layout(margin=dict(l=0, r=0, t=10, b=0), height=380)
-            st.plotly_chart(fig_mapa, use_container_width=True)
-
+    if os.path.exists("ultimo_mapa.npy"):
+        matriz = np.load("ultimo_mapa.npy")
+        fig_mapa = px.imshow(
+            matriz,
+            color_continuous_scale="RdYlGn",
+            zmin=0.1, zmax=0.6,
+            labels={'color': 'Vigor Vegetal'}
+        )
+        fig_mapa.update_xaxes(showticklabels=False).update_yaxes(showticklabels=False)
+        fig_mapa.update_layout(margin=dict(l=0, r=0, t=10, b=0), height=380)
+        st.plotly_chart(fig_mapa, use_container_width=True)
+        
 with col_grafico:
     st.subheader("📅 Como este ano se compara aos anteriores?")
     st.caption("Selecione um ano para comparar o comportamento da vegetação mês a mês")
