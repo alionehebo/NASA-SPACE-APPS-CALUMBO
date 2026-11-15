@@ -1,7 +1,6 @@
 # 🛰️ Sala de Situação Agro-Pastoral: Monitoramento Precoce de Seca em Angola
 
-[![Abrir Aplicação no Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://nasa-space-apps-calumbo.streamlit.app)
-
+Link da App: [https://nasa-space-apps-calumbo.streamlit.app](https://nasa-space-apps-calumbo.streamlit.app)
 
 **Projeto desenvolvido no âmbito do NASA Space Apps Challenge Calumbo 2026**  
 Sistema de apoio à decisão municipal e comunitária para mitigação dos impactos da seca e gestão de pastagens no Sul de Angola utilizando dados de observação da Terra da NASA.
