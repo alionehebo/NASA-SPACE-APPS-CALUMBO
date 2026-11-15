@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 import numpy as np
-import rasterio
+#import rasterio
 import plotly.express as px
 import streamlit as st
 
